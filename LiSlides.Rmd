@@ -1,0 +1,75 @@
+---
+title: "The city Where I live."
+author: "Yan Li"
+date: "17 January 2017"
+output: html_document
+---
+
+
+# The location of RWTH Aachen, Germany
+```{r}
+library(leaflet)
+my_map <- leaflet() %>% addTiles() 
+my_map <- my_map %>% addMarkers(lat=50.7801, lng= 6.0657, popup="RWTH Aachen university")
+my_map
+```
+# Add an icon to the location of RWTH Aachen, Germany
+
+```{r}
+library(leaflet)
+AachenIcon <-  makeIcon(
+iconUrl = "http://www.rwth-aachen.de/global/show_picture.asp?id=aaaaaaaaaatjcul&w=972&h=840&q=81", 
+iconWidth = 31*215/230, iconHeight = 31,
+iconAnchorX = 31*215/230/2, iconAnchorY = 16
+)
+
+
+AachenLatLong <- data.frame(
+  lat = c(50.7801),
+  lng = c(6.0657)
+)
+
+AachenLatLong %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = AachenIcon)
+
+```
+# To add different icons to different urls
+
+```{r}
+library(leaflet)
+AachenSites <- c(
+  "<a href='http://www.rwth-aachen.de/cms/~a/root/?lidx=1/'>RWTH Aachen Uni.</a>",
+  "<a href='http://www.raileurope-world.com/city/aachen/'>Aachen main train station</a>"
+)
+AachenIcon <-  
+iconList(
+RWTH =makeIcon("http://www.rwth-aachen.de/global/show_picture.asp?id=aaaaaaaaaatjcul&w=972&h=840&q=81", iconWidth = 31*250/230, iconHeight = 50,
+iconAnchorX = 31*250/230/2, iconAnchorY = 50),
+TrainStation=makeIcon("http://www.rwth-aachen.de/global/show_picture.asp?id=aaaaaaaaaatjcul&w=972&h=840&q=81", iconWidth = 31*250/230, iconHeight = 50,
+iconAnchorX = 31*250/230/2, iconAnchorY = 50) 
+)
+
+
+AachenLatLong <- data.frame(
+  lat = c(50.7801,50.7677),
+  lng = c(6.0657,6.0914),
+  type = c("RWTH","TrainStation")
+)
+
+AachenLatLong %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = ~AachenIcon[type],popup =AachenSites )
+```
+ 
+```{r}
+library(leaflet)
+
+
+  leaflet() %>%
+  addTiles() %>%
+  addRectangles(lat1=50.79,lng1=6.10,
+                lat2=50.75,lng2=6.05)
+```
