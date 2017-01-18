@@ -13,6 +13,7 @@ my_map <- leaflet() %>% addTiles()
 my_map <- my_map %>% addMarkers(lat=50.7801, lng= 6.0657, popup="RWTH Aachen university")
 my_map
 ```
+
 # Add an icon to the location of RWTH Aachen, Germany
 
 ```{r}
@@ -35,6 +36,7 @@ AachenLatLong %>%
   addMarkers(icon = AachenIcon)
 
 ```
+
 # To add different icons to different urls
 
 ```{r}
@@ -63,6 +65,9 @@ AachenLatLong %>%
   addTiles() %>%
   addMarkers(icon = ~AachenIcon[type],popup =AachenSites )
 ```
+
+
+# To add a rectangle
  
 ```{r}
 library(leaflet)
