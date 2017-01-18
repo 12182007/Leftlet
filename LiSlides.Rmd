@@ -14,7 +14,7 @@ my_map <- my_map %>% addMarkers(lat=50.7801, lng= 6.0657, popup="RWTH Aachen uni
 my_map
 ```
 
-# Add an icon to the location of RWTH Aachen, Germany
+# Add an icon to the location of RWTH Aachen University, Germany
 
 ```{r}
 library(leaflet)
